@@ -4,43 +4,17 @@ This is a demonstration to extract deep images features from Spatial Transcripto
 
 The pretained Inception-v3 model was obtained from [Tensorflow Hub](https://tfhub.dev/). It takes in images with `299*299*3` size and output the last full connection layer with `2048` dimensions as features.
 
-## Package requirement
+## Installation
 
-- Tensorflow
-- Tensorflow_hub
-- Numpy
-- Opencv-python
-- Pandas
+Download conda, install and activate it. 
 
-
-## How to use it?
-
-In this demonstration, there are three file/folders:
+Create a new conda environment named 'muse' and install the required packages:
 
 ```bash
-# Pretrained neural network provided by Tensorflow Hub
-inception-v3
-
-# Two example inputs
-example_img/
-|_ Img_1.npy
-|_ Img_2.npy
-
-# Deep feature pipeline
-image_inception.py
+conda install mamba -n base -c conda-forge  
+mamba create -n muse python=3.6
+mamba env update -n muse --file muse.yml
 ```
-Segmentated images were save to `example_img` folder. `image_inception.py` will sequential load images from this folder, resize images then use model structure and parameters defined in `inception-v3` to do feed forward inference. Last full connection layer of the model is used as features.   
-
-#### Step 1: Segment single cell or spot to patches
-
-Use the `image + cell masks` (for imaging based single-cell spatial transcriptomics methods, e.g. seqFISH+, merFISH and STARmap) or `image + spot positions` (for sequencing based methods, e.g. Spatial Transcriptomics [ST], 10X Visium) to identify regions corresponding to each cell or spot and save them in individual files. The format can be either image or numpy array (`*.npy`). Segmented image size can be in any scale and the pipeline will automatically adjust to  the default input size of Inception-v3 model (`299 * 299`). 
-
-All segmented images will be saved in `example_img` and named as `Img_#.npy` (or any image formats) to define the reading order. 
-
-
-#### Step 2: Load segmented patches and learn corresponding image features
-
-In python script `image_inception.py`, we load pretrained network from tensorflow hub, combine all segmented patches in Step 1 and input then to the network to obtain deep features.  
 
 ## Copyright
 Software provided as is under **MIT License**.
