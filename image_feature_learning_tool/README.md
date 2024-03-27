@@ -13,7 +13,7 @@ Create a new conda environment named 'muse' and install the required packages:
 ```bash
 conda install mamba -n base -c conda-forge  
 mamba create -n muse python=3.6
-mamba env update -n muse --file muse.yml
+mamba env update -n muse --file muse_mf.yml
 ```
 
 ## Copyright
